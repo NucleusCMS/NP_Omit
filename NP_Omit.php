@@ -2,9 +2,9 @@
 // 日本語文字化け防止
 class NP_Omit extends NucleusPlugin { 
 	function getName()             { return 'omit'; } 
-	function getAuthor()           { return 'yama.kyms'; } 
-	function getURL()              { return 'http://kyms.ne.jp/'; } 
-	function getVersion()          { return '0.24'; } 
+	function getAuthor()           { return 'yamamoto'; } 
+	function getURL()              { return 'http://kyms.jp/'; } 
+	function getVersion()          { return '0.3'; } 
 	function getMinNucleusVersion(){ return 324; }
 	function getDescription()      { return 'Omit'; }
 	function supportsFeature($w)   { return ($w == 'SqlTablePrefix') ? 1 : 0; }
@@ -15,26 +15,26 @@ class NP_Omit extends NucleusPlugin {
 		switch($param1)
 		{
 			case 'body':
-				$source = strip_tags(&$item->body);
+				$source = strip_tags($item->body);
 				$str = $this->_omit($source, $param2, $param3);
 				break;
 			case 'more':
-				$source = strip_tags(&$item->more);
+				$source = strip_tags($item->more);
 				$str = $this->_omit($source, $param2, $param3);
 				break;
 			case 'smartbody':
 				if (!$item->more)
 				{
-					$source = strip_tags(&$item->body);
+					$source = strip_tags($item->body);
 					$str = $this->_omit($source, $param2, $param3);
 				}
 				else
 				{
-					$str = strip_tags(&$item->more);
+					$str = strip_tags($item->more);
 				}
 				break;
 			default:
-				$source = strip_tags(&$item->body);
+				$source = strip_tags($item->body);
 				$str = $this->_omit($source, $param2, $param3);
 		}
 		echo $str;
@@ -99,4 +99,3 @@ class NP_Omit extends NucleusPlugin {
 	}
 }
 // 日本語文字化け防止
-?>
